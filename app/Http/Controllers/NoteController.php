@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Note; // Asegúrate de importar el modelo Note
+use App\Models\Note; // Importa el modelo Note
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller; // Asegúrate de importar el controlador base
 
 class NoteController extends Controller
 {
@@ -43,6 +44,7 @@ class NoteController extends Controller
 
     public function index()
     {
+        // Recupera las notas del usuario autenticado, ordenadas por fecha de creación descendente
         $notes = auth()('created_at', 'desc')->get();
         return response()->json($notes);
     }
